@@ -107,6 +107,11 @@
     git
     wget
     lazygit
+    btop
+    fzf
+    ripgrep
+    yazi
+    bat
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
