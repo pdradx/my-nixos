@@ -57,6 +57,18 @@
   services.xserver.xkb = {
     layout = "us";
     variant = "";
+    options = "ctrl:nocaps";
+  };
+
+  programs.dconf.enable = true;
+  # Add this to ensure GNOME respects the XKB options
+  systemd.user.services.gnome-xkb-options = {
+    description = "Set XKB Options";
+    wantedBy = [ "graphical-session.target" ];
+    partOf = [ "graphical-session.target" ];
+    script = ''
+      ${pkgs.glib}/bin/gsettings set org.gnome.desktop.input-sources xkb-options "['ctrl:nocaps']"
+    '';
   };
 
   # Enable CUPS to print documents.
