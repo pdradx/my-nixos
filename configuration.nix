@@ -18,7 +18,7 @@
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
   boot.initrd.luks.devices."luks-3323d187-34de-4c09-a594-f0e52f4bf5a7".device = "/dev/disk/by-uuid/3323d187-34de-4c09-a594-f0e52f4bf5a7";
-  networking.hostName = "nixos"; # Define your hostname.
+  networking.hostName = "ntrn-p1g8"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
