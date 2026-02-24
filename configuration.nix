@@ -143,6 +143,8 @@
     yazi
     bat
     telegram-desktop
+    mattermost-desktop
+
     gnomeExtensions.appindicator
   ];
 
