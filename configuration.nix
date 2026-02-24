@@ -143,10 +143,7 @@
     yazi
     bat
     telegram-desktop
-    
-    
-
-
+    gnomeExtensions.appindicator
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
