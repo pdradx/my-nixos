@@ -33,8 +33,18 @@
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
   
+  # For offloading, `modesetting` is needed additionally,
+  # otherwise the X-server will be running permanently on nvidia,
+  # thus keeping the GPU always on (see `nvidia-smi`).
+  services.xserver.videoDrivers = [ 
+    "modesetting" # for Intel iGPU
+    "nvidia" 
+  ];
+
   hardware.graphics = {
+    # Enable OpenGL 
     enable = true;
+
     extraPackages = with pkgs; [
       # Required for modern Intel GPUs (Xe iGPU and ARC)
       intel-media-driver     # VA-API (iHD) userspace
@@ -45,6 +55,18 @@
       # NOTE: 'intel-ocl' also exists as a legacy package; not recommended for Arc/Xe.
       # libvdpau-va-gl       # Only if you must run VDPAU-only apps
     ];
+  };
+
+  hardware.nvidia = {
+    open = true;
+    package = config.boot.kernelPackages.nvidiaPackages.stable; # Default
+    prime = {
+      offload.enable = true;
+
+      intelBusId = "PCI:0@0:2:0";
+      nvidiaBusId = "PCI:1@0:0:0";
+    };
+    modesetting.enable = true;
   };
 
   environment.sessionVariables = {
