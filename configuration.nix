@@ -146,6 +146,7 @@
     wget
     lazygit
     btop
+    nvtopPackages.full
     fzf
     ripgrep
     yazi
