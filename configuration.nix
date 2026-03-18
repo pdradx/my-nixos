@@ -115,8 +115,8 @@
     git
     wget
     lazygit
-    #btop
-    pkgs-unstable.btop
+    btop-cuda
+    #pkgs-unstable.btop
     nvtopPackages.full
     fzf
     ripgrep
