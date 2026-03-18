@@ -124,6 +124,9 @@
     bat
     telegram-desktop
     mattermost-desktop
+
+    smplayer
+    mpv
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
