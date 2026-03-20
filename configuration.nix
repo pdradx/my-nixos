@@ -138,6 +138,14 @@
     mission-center
 
     obsidian
+    
+    (dotnetCorePackages.combinePackages [
+      pkgs.dotnet-sdk_10
+      pkgs.dotnet-sdk_9
+      pkgs.dotnet-sdk_8
+    ])
+    dotnetPackages.Nuget
+
   ];
 
 
