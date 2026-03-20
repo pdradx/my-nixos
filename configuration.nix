@@ -91,7 +91,7 @@
   users.users.pdradx = {
     isNormalUser = true;
     description = "Pavel";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "podman"];
     packages = with pkgs; [
       kdePackages.kate
     #  thunderbird
@@ -137,6 +137,16 @@
     
     mission-center
   ];
+
+
+  virtualisation = {
+    containers.enable = true;
+    podman = {
+      enable = true;
+      dockerCompat = true;
+      defaultNetwork.settings.dns_enabled = true; # Required for containers under podman-compose to be able to talk to each other.
+    };
+  };
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
