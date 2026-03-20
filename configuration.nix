@@ -9,6 +9,7 @@
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
       ./vim.nix
+      ./rider.nix
     ];
 
   # Bootloader.
@@ -133,8 +134,6 @@
 
     smplayer
     mpv
-    
-    jetbrains.rider
     
     mission-center
   ];
