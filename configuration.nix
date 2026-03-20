@@ -136,6 +136,8 @@
     mpv
     
     mission-center
+
+    obsidian
   ];
 
 
