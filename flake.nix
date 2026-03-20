@@ -11,7 +11,10 @@
   outputs = { self, nixpkgs, nixpkgs-unstable, ... }@inputs: 
   let 
     system = "x86_64-linux";
-    pkgs-unstable = nixpkgs-unstable.legacyPackages.${system};
+    pkgs-unstable = import nixpkgs-unstable {
+        inherit system;
+	config.allowUnfree = true;
+    };
   in {
     # Please replace my-nixos with your hostname
     nixosConfigurations.ntrn-p1g8 = nixpkgs.lib.nixosSystem {
