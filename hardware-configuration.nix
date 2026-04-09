@@ -13,6 +13,10 @@
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
 
+  boot.kernel.sysctl = {
+    "vm.nr_hugepages" = 512;
+  };
+
   fileSystems."/" =
     { device = "/dev/mapper/luks-ea12fa30-db47-4271-8897-e80a2bad39c4";
       fsType = "ext4";
