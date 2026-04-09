@@ -17,8 +17,8 @@
   boot.loader.efi.canTouchEfiVariables = true;
 
   # Use latest kernel.
-  #boot.kernelPackages = pkgs.linuxPackages_latest;
-  boot.kernelPackages = pkgs.linuxPackages_6_18; # Pin version until NVIDIA open driver get fixed
+  boot.kernelPackages = pkgs.linuxPackages_latest;
+  # boot.kernelPackages = pkgs.linuxPackages_6_18; # Pin version until NVIDIA open driver get fixed
 
   boot.initrd.luks.devices."luks-b36d9cf3-a23a-47a2-8014-d493a8d6f6d2".device = "/dev/disk/by-uuid/b36d9cf3-a23a-47a2-8014-d493a8d6f6d2";
   networking.hostName = "ntrn-p1g8"; # Define your hostname.
