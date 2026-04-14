@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, pkgs-unstable, ... }:
+{ config, pkgs, lib, pkgs-unstable, ... }:
 
 {
   imports =
@@ -122,6 +122,8 @@
     #vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     git
     wget
+    nvd
+    nh
     mscp
     lazygit
     btop-cuda
@@ -147,6 +149,15 @@
       pkgs.dotnet-sdk_8
     ])
     dotnetPackages.Nuget
+
+    remmina
+    kitty
+
+    google-chrome
+    libreoffice
+    hunspell
+    hunspellDicts.en-us
+    hunspellDicts.ru-ru
 
   ];
 
