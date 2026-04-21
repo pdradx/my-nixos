@@ -18,8 +18,25 @@
 
   # Use latest kernel.
   boot.kernelPackages = pkgs.linuxPackages_latest;
-  # boot.kernelPackages = pkgs.linuxPackages_6_18; # Pin version until NVIDIA open driver get fixed
+  # boot.kernelPackages = pkgs.linuxPackages_6_19; # Pin version until NVIDIA open driver get fixed
 
+  # Set crypto-modules explicitly to prevent loading of aes_generic which have been deleted in 7.0.0 kernel
+  boot.initrd.luks.cryptoModules = [
+    "aes"
+    "blowfish"
+    "twofish"
+    "serpent"
+    "cbc"
+    "xts"
+    "lrw"
+    "sha1"
+    "sha256"
+    "sha512"
+    "af_alg"
+    "algif_skcipher"
+    "cryptd"
+    "input_leds"
+  ];
   boot.initrd.luks.devices."luks-b36d9cf3-a23a-47a2-8014-d493a8d6f6d2".device = "/dev/disk/by-uuid/b36d9cf3-a23a-47a2-8014-d493a8d6f6d2";
   networking.hostName = "ntrn-p1g8"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
