@@ -178,6 +178,13 @@
 
   ];
 
+  fonts = {
+    enableDefaultPackages = true;
+    packages = with pkgs; [
+      corefonts
+      vista-fonts
+    ];
+  };
 
   virtualisation = {
     containers.enable = true;
