@@ -16,9 +16,10 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  # Use latest kernel.
-  boot.kernelPackages = pkgs.linuxPackages_latest;
-  # boot.kernelPackages = pkgs.linuxPackages_6_19; # Pin version until NVIDIA open driver get fixed
+  # boot.kernelPackages = pkgs.linuxPackages_latest; # Use latest kernel.
+
+  # Pin version until fixes for sleep modes
+  boot.kernelPackages = pkgs.linuxPackages_6_18; # 26th LTS release (https://en.wikipedia.org/wiki/Linux_kernel_version_history)
 
   # Set crypto-modules explicitly to prevent loading of aes_generic which have been deleted in 7.0.0 kernel
   boot.initrd.luks.cryptoModules = [
