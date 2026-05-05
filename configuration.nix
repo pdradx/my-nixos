@@ -167,6 +167,7 @@
       pkgs.dotnet-sdk_8
     ])
     dotnetPackages.Nuget
+    dotnet-ef
 
     remmina
     kitty
