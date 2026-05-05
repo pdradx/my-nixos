@@ -1,23 +1,40 @@
-{ config, pkgs, ... }: 
+{ config, pkgs, pkgs-unstable, ... }: 
 let
   dotnet-sdks = pkgs.dotnetCorePackages.combinePackages [
     pkgs.dotnet-sdk_8
     pkgs.dotnet-sdk_9
     pkgs.dotnet-sdk_10
   ];
+  unstableRider = pkgs-unstable.jetbrains.rider.overrideAttrs (old: rec {
+    name = "rider-${version}";
+    version = "2026.1.1";
+    src = pkgs-unstable.fetchurl {
+      url = "https://download.jetbrains.com/rider/JetBrains.Rider-${version}.tar.gz";
+      sha256 = "sha256-DjLN8vq0UDEmJKXEpLeuEjgmVWBeUKEo6471FJMPzCM=";
+    };
+  });
 in {
   nixpkgs.overlays = [
     (final: prev: {
+      jetbrains-rider-latest = unstableRider;
+    })
+
+    (final: prev: {
       jetbrains = prev.jetbrains // {
-	rider = prev.jetbrains.rider.overrideAttrs (old: rec {
+	rider_custom = prev.jetbrains.rider.overrideAttrs (old: rec {
 	  #buildInputs = (old.buildInputs or []) ++ (with pkgs; [ dotnet-sdks ]);
 	  #nativeBuildInputs = (old.nativeBuildInputs or []) ++ [ pkgs.makeWrapper ];
 
+	  #buildInputs = (old.buildInputs or []) ++ (with pkgs; [ 
+	  #  libxcrypt
+	  #  openssl_1_1
+	  #]);
+
 	  name = "rider-${version}";
-	  version = "2025.3.3";
+	  version = "2026.1.1";
 	  src = prev.fetchurl {
 	    url = "https://download.jetbrains.com/rider/JetBrains.Rider-${version}.tar.gz";
-	    sha256 = "sBF/XA52oSFD1dEmzhvo7cwf5EGTi0mx1x3PcobQVAs=";
+	    sha256 = "sha256-DjLN8vq0UDEmJKXEpLeuEjgmVWBeUKEo6471FJMPzCM=";
 	  };
 
 
@@ -44,6 +61,6 @@ in {
   ];
 
   environment.systemPackages = with pkgs; [
-    jetbrains.rider
+    jetbrains-rider-latest
   ];
 }
