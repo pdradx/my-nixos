@@ -151,6 +151,7 @@
     ripgrep
     yazi
     bat
+    ncdu
     telegram-desktop
     mattermost-desktop
 
