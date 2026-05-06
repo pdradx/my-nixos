@@ -19,6 +19,7 @@ in {
       jetbrains-rider-latest = unstableRider;
     })
 
+    /*
     (final: prev: {
       jetbrains = prev.jetbrains // {
 	rider_custom = prev.jetbrains.rider.overrideAttrs (old: rec {
@@ -58,6 +59,7 @@ in {
       );
     };
     })
+    */
   ];
 
   environment.systemPackages = with pkgs; [
