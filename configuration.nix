@@ -137,6 +137,8 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
+    home-manager
+
     #vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     git
     wget
@@ -191,7 +193,14 @@
   };
 
   virtualisation = {
-    containers.enable = true;
+    containers = {
+      enable = true;
+      containersConf.settings = {
+	engine = {
+	  detach_keys = "ctrl-z,ctrl-z";
+	};
+      };
+    };
     podman = {
       enable = true;
       dockerCompat = true;
