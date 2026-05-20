@@ -181,6 +181,8 @@
     hunspellDicts.en-us
     hunspellDicts.ru-ru
 
+    podman-compose
+
   ];
 
   fonts = {
