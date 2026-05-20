@@ -75,8 +75,12 @@
   services.xserver.enable = true;
 
   # Enable the KDE Plasma Desktop Environment.
-  services.displayManager.sddm.enable = true;
-  services.desktopManager.plasma6.enable = true;
+  #services.displayManager.sddm.enable = true;
+  #services.desktopManager.plasma6.enable = true;
+
+  # Enable GNOME Desktop Environment
+  services.displayManager.gdm.enable = true;
+  services.desktopManager.gnome.enable = true;
 
   # Configure keymap in X11
   services.xserver.xkb = {
@@ -120,6 +124,23 @@
     ];
   };
 
+  # GNOME dconf settings
+  programs.dconf.profiles.user.databases = [
+    {
+      lockAll = true; # prevents overriding
+      settings = {
+        "org/gnome/desktop/input-sources" = {
+          xkb-options = [ "ctrl:nocaps" ];
+        };
+	"org/gnome/shell" = {
+	  enabled-extensions = with pkgs.gnomeExtensions; [
+	    appindicator.extensionUuid
+	  ];
+	};
+      };
+    }
+  ];
+
   # Install firefox.
   programs.firefox.enable = true;
 
@@ -138,6 +159,7 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     home-manager
+    gnomeExtensions.appindicator
 
     #vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     git
